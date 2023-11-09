@@ -12,7 +12,6 @@ export default function SignIn() {
     const response = await getRedirectResult(auth);
     if (response) {
       const userDocRef = await createUserDocumentsFromAuth(response.user);
-      console.log(userDocRef);
     }
   }, []);
   const logUserGoogle = async function () {
