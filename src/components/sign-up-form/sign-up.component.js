@@ -46,7 +46,7 @@ export default function SignUpForm() {
     }
   }
   return (
-    <div className="sign-up container">
+    <div className="sign-up-container">
       <h2>Don't have an account?</h2>
       <span>Sign up with your emails and password</span>
       <form>
