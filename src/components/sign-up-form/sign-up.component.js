@@ -1,8 +1,11 @@
 import { useState } from "react";
+import "./sign-up.style.scss";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentsFromAuth,
 } from "../../utils/firebase.utils";
+import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -17,7 +20,6 @@ export default function SignUpForm() {
     setFormFields((formFields) => {
       return { ...formFields, [name]: value };
     });
-    console.log(formFields);
   }
   function resetFieldsForm() {
     setFormFields(defaultFormFields);
@@ -44,44 +46,45 @@ export default function SignUpForm() {
     }
   }
   return (
-    <div>
-      <h1>Sign up with your emails and password</h1>
+    <div className="sign-up container">
+      <h2>Don't have an account?</h2>
+      <span>Sign up with your emails and password</span>
       <form>
-        <label>Display Name</label>
-        <input
+        <FormInput
+          label="Display Name"
           type="text"
           name="displayName"
           value={displayName}
           onChange={handleChange}
           required
         />
-        <label>Email</label>
-        <input
+        <FormInput
+          label="Email"
           type="email"
           name="email"
           value={email}
           onChange={handleChange}
           required
         />
-        <label>Password</label>
-        <input
+        <FormInput
+          label="Password"
           type="password"
           name="password"
           onChange={handleChange}
           value={password}
           required
         />
-        <label>Confirm Password</label>
-        <input
+        <FormInput
+          label="Confirm Password"
           type="Password"
           value={confirmPassword}
           name="confirmPassword"
           onChange={handleChange}
           required
         />
-        <button type="submit" onClick={handleSubmit}>
+        <Button type="submit" onClick={handleSubmit}>
           Sign up
-        </button>
+        </Button>
       </form>
     </div>
   );
