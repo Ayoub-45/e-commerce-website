@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./sign-in.style.scss";
 import {
   signAuthUserWithEmailAndPassword,
@@ -7,6 +7,7 @@ import {
 } from "../../utils/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
+import { UserContext } from "../../contexts/user.context";
 const defaultFormFields = {
   email: "",
   password: "",
@@ -14,6 +15,7 @@ const defaultFormFields = {
 export default function SignInForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const { setCurrentUser } = useContext(UserContext);
   function handleChange(event) {
     const { name, value } = event.target;
     setFormFields((formFields) => {
@@ -28,7 +30,9 @@ export default function SignInForm() {
     try {
       const response = await signAuthUserWithEmailAndPassword(email, password);
       if (response === undefined) throw new Error("No data entered ");
-      console.log(response);
+      const { user } = response;
+
+      setCurrentUser(user);
       resetFieldsForm();
     } catch (err) {
       switch (err.code) {
