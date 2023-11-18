@@ -15,7 +15,6 @@ const defaultFormFields = {
 export default function SignInForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
   function handleChange(event) {
     const { name, value } = event.target;
     setFormFields((formFields) => {
@@ -32,7 +31,6 @@ export default function SignInForm() {
       if (response === undefined) throw new Error("No data entered ");
       const { user } = response;
 
-      setCurrentUser(user);
       resetFieldsForm();
     } catch (err) {
       switch (err.code) {
