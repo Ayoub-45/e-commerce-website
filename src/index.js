@@ -8,9 +8,9 @@ import { Userprovider } from "./contexts/user.context";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Userprovider>
-      <App />
-    </Userprovider>
+      <Userprovider>
+        <App />
+      </Userprovider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
