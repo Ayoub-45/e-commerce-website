@@ -2,15 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./routes/home/Home.component";
 import Navigation from "./routes/navigation/Navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
-function Shop() {
-  return (
-    <>
-      <div>
-        <h1>I am a shop component</h1>;
-      </div>
-    </>
-  );
-}
+import Shop from "./routes/shop/shop.component";
 
 export default function App() {
   return (
