@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import "./sign-in.style.scss";
 import {
   signAuthUserWithEmailAndPassword,
@@ -7,7 +7,6 @@ import {
 } from "../../utils/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
-import { UserContext } from "../../contexts/user.context";
 const defaultFormFields = {
   email: "",
   password: "",
@@ -28,8 +27,7 @@ export default function SignInForm() {
     event.preventDefault();
     try {
       const response = await signAuthUserWithEmailAndPassword(email, password);
-      if (response === undefined) throw new Error("No data entered ");
-      const { user } = response;
+      if (response === undefined) throw new Error("No data entered ")
 
       resetFieldsForm();
     } catch (err) {
@@ -47,7 +45,7 @@ export default function SignInForm() {
   }
   const signInWithGoogle = async function () {
     const { user } = await signInwithGooglePopup();
-    await createUserDocumentsFromAuth(user);
+     
   };
   return (
     <div className="sign-in-container">

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import "./sign-up.style.scss";
 import {
   createAuthUserWithEmailAndPassword,
@@ -30,7 +30,7 @@ export default function SignUpForm() {
     event.preventDefault();
     console.log(password, confirmPassword);
     if (password !== confirmPassword) {
-      alert("password is not match");
+      alert("Password is not match");
       return;
     }
     try {

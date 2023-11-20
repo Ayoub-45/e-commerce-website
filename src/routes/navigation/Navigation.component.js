@@ -5,11 +5,10 @@ import "./navigation.style.scss";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase.utils";
 export default function Navigation() {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser} = useContext(UserContext);
   const isSignIn = currentUser ? true : false;
   async function handleSignout() {
     await signOutUser();
-    setCurrentUser(null);
   }
   return (
     <>
