@@ -14,7 +14,7 @@ export default function DropDown(){
             })
         }
     </div>
-        <Button>Go to check out </Button>
+        <Button>Go to check out</Button>
         </div>
     )
 }
