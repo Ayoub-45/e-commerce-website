@@ -12,6 +12,7 @@ export const cartContext=createContext({
     setIsOpen:()=>{},
     cartItems:[],
     AddItem:()=>{},
+    removeItem:()=>{},
     counter:0
 })
 export const CartProvider=function({children}){
@@ -29,6 +30,7 @@ export const CartProvider=function({children}){
     isOpen,
     setIsOpen,
     addItemToCart,
+  
     cartItems,
     count,
    }
