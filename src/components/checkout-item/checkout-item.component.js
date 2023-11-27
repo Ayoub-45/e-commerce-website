@@ -5,19 +5,21 @@ import {ReactComponent as LeftArrow} from "../../assets/chevron-left-svgrepo-com
  import "./checkout-item.style.scss"
 import { cartContext } from "../../contexts/cart.context";
 export default function CheckoutItem({item}){
-const {addItemToCart,cartItems,setCartItems}=useContext(cartContext)
+const {addItemToCart,cartItems,setTotal,setCartItems}=useContext(cartContext)
 const {name,price,imageUrl,quantity}=item;
+
 function handleClearItemFromCart(itemToRemove){
-    setCartItems(cartItems.filter(item=>item.id!==itemToRemove.id))
+    setCartItems(cartItems.filter(item=>item.id!==itemToRemove.id));
+ 
 }
 function removeItem(itemToRemove){
     if(itemToRemove.quantity===1){
-
-        return setCartItems(cartItems.filter(item=>itemToRemove.id!==item.id));
+         setCartItems(cartItems.filter(item=>itemToRemove.id!==item.id));
+        
     }
     else{
-        return setCartItems(cartItems.map(product=>(product.id===itemToRemove.id)?{...product,quantity:product.quantity-1}:product));
-    }
+         setCartItems(cartItems.map(product=>(product.id===itemToRemove.id)?{...product,quantity:product.quantity-1}:product));
+        }
     }
    
 return(
