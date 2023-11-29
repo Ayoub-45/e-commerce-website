@@ -9,7 +9,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc,collection,writeBatch } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyAnVI-UmOTwocvMuMGcTLI9_dTcCPwA7AY",
   authDomain: "e-commerce-crown-532d5.firebaseapp.com",
@@ -59,6 +59,16 @@ export const createUserDocumentsFromAuth = async function (
 
   return userDocRef;
 };
+export const addCollectionAndDocuments=async function(collectionKey,objectToAdd){
+const collectionRef=collection(db,collectionKey);
+const batch=writeBatch(db);
+objectToAdd.forEach(object=>{
+  const docRef=doc(collectionRef,object.title.toLowerCase())
+  batch.set(docRef,object);
+})
+await batch.commit();
+console.log("Done");
+}
 export const createAuthUserWithEmailAndPassword = async function (
   email,
   password
