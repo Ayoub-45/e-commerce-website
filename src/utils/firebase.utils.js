@@ -9,7 +9,16 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc,collection,writeBatch } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyAnVI-UmOTwocvMuMGcTLI9_dTcCPwA7AY",
   authDomain: "e-commerce-crown-532d5.firebaseapp.com",
@@ -59,16 +68,19 @@ export const createUserDocumentsFromAuth = async function (
 
   return userDocRef;
 };
-export const addCollectionAndDocuments=async function(collectionKey,objectToAdd){
-const collectionRef=collection(db,collectionKey);
-const batch=writeBatch(db);
-objectToAdd.forEach(object=>{
-  const docRef=doc(collectionRef,object.title.toLowerCase())
-  batch.set(docRef,object);
-})
-await batch.commit();
-console.log("Done");
-}
+export const addCollectionAndDocuments = async function (
+  collectionKey,
+  objectToAdd
+) {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+  objectToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+  await batch.commit();
+  console.log("Done");
+};
 export const createAuthUserWithEmailAndPassword = async function (
   email,
   password
@@ -88,5 +100,16 @@ export const signOutUser = async function () {
 };
 export const onAuthStateChangeListener = function (callback) {
   console.log(callback);
-  return onAuthStateChanged(auth,callback);
+  return onAuthStateChanged(auth, callback);
+};
+export const getCategoriesAndDocuments = async function () {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnpashot) => {
+    const { title, items } = docSnpashot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+  return categoryMap;
 };
