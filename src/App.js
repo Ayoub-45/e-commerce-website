@@ -4,7 +4,6 @@ import Navigation from "./routes/navigation/Navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 import Shop from "./routes/shop/shop.component";
 import Checkout from "./routes/checkout/checkout.component";
-const ayoub = "Ayoub";
 export default function App() {
   return (
     <Routes>
