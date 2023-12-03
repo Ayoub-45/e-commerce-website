@@ -1,40 +1,60 @@
- import { useContext } from "react";
-import {ReactComponent as LeftArrow} from "../../assets/chevron-left-svgrepo-com.svg"
- import {ReactComponent as RightArrow} from "../../assets/chevron-right-svgrepo-com.svg"
- import {ReactComponent as Remove } from "../../assets/multiply-svgrepo-com.svg";
- import "./checkout-item.style.scss"
+import { useContext } from "react";
+import { ReactComponent as LeftArrow } from "../../assets/chevron-left-svgrepo-com.svg";
+import { ReactComponent as RightArrow } from "../../assets/chevron-right-svgrepo-com.svg";
+import { ReactComponent as Remove } from "../../assets/multiply-svgrepo-com.svg";
 import { cartContext } from "../../contexts/cart.context";
-export default function CheckoutItem({item}){
-const {addItemToCart,cartItems,setTotal,setCartItems}=useContext(cartContext)
-const {name,price,imageUrl,quantity}=item;
+import {
+  Arrow,
+  CheckoutItemContainer,
+  ImageContainer,
+  Img,
+  Name,
+  Value,
+  Price,
+  Quantity,
+  RemoveButton,
+} from "./checkout-item.style";
+export default function CheckoutItem({ item }) {
+  const { addItemToCart, cartItems, setTotal, setCartItems } =
+    useContext(cartContext);
+  const { name, price, imageUrl, quantity } = item;
 
-function handleClearItemFromCart(itemToRemove){
-    setCartItems(cartItems.filter(item=>item.id!==itemToRemove.id));
- 
-}
-function removeItem(itemToRemove){
-    if(itemToRemove.quantity===1){
-         setCartItems(cartItems.filter(item=>itemToRemove.id!==item.id));
-        
+  function handleClearItemFromCart(itemToRemove) {
+    setCartItems(cartItems.filter((item) => item.id !== itemToRemove.id));
+  }
+  function removeItem(itemToRemove) {
+    if (itemToRemove.quantity === 1) {
+      setCartItems(cartItems.filter((item) => itemToRemove.id !== item.id));
+    } else {
+      setCartItems(
+        cartItems.map((product) =>
+          product.id === itemToRemove.id
+            ? { ...product, quantity: product.quantity - 1 }
+            : product
+        )
+      );
     }
-    else{
-         setCartItems(cartItems.map(product=>(product.id===itemToRemove.id)?{...product,quantity:product.quantity-1}:product));
-        }
-    }
-   
-return(
-<div className="checkout-item-container">
-    <div className="image-container">
-        <img src={imageUrl}  alt={name}/>
-    </div>
-    <span className="name">{name}</span>
-    <div className="quantity">
-         <span className="arrow" onClick={()=>removeItem(item)}><LeftArrow/></span> 
-         <span className="value"> {quantity} </span>
-         <span className="arrow" onClick={()=>addItemToCart(item)}><RightArrow/></span>
-    </div>
-    <span className="price">{price}</span>
-    <span  className= "remove-button" onClick={()=>handleClearItemFromCart(item)}> <Remove/></span>
-</div>
-)
+  }
+
+  return (
+    <CheckoutItemContainer>
+      <ImageContainer>
+        <Img src={imageUrl} alt={name} />
+      </ImageContainer>
+      <Name>{name}</Name>
+      <Quantity>
+        <Arrow onClick={() => removeItem(item)}>
+          <LeftArrow />
+        </Arrow>
+        <Value> {quantity} </Value>
+        <Arrow onClick={() => addItemToCart(item)}>
+          <RightArrow />
+        </Arrow>
+      </Quantity>
+      <Price>{price}</Price>
+      <RemoveButton onClick={() => handleClearItemFromCart(item)}>
+        <Remove />
+      </RemoveButton>
+    </CheckoutItemContainer>
+  );
 }
