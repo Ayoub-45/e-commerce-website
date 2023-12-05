@@ -15,8 +15,7 @@ import {
   RemoveButton,
 } from "./checkout-item.style";
 export default function CheckoutItem({ item }) {
-  const { addItemToCart, cartItems, setTotal, setCartItems } =
-    useContext(cartContext);
+  const { addItemToCart, cartItems, setCartItems } = useContext(cartContext);
   const { name, price, imageUrl, quantity } = item;
 
   function handleClearItemFromCart(itemToRemove) {
