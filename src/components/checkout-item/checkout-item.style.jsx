@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const CheckoutItemContainer = styled.div`
   width: 100%;
   display: flex;
@@ -8,37 +9,34 @@ export const CheckoutItemContainer = styled.div`
   font-size: 20px;
   align-items: center;
 `;
+
 export const ImageContainer = styled.div`
   width: 23%;
   padding-right: 15px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
-export const Img = styled.img`
-  width: 80%;
-  height: 100%;
+
+export const BaseSpan = styled.span`
+  width: 23%;
 `;
-export const Name = styled.span`
-  width: 25%;
-`;
-export const Quantity = styled.div`
+
+export const Quantity = styled(BaseSpan)`
   display: flex;
-  width: 23%;
 `;
-export const Price = styled.span`
-  width: 23%;
-`;
-export const Arrow = styled.span`
+
+export const Arrow = styled.div`
   cursor: pointer;
-  width: 23px;
-  height: 23px;
 `;
+
 export const Value = styled.span`
-  margin-left: 0 10px;
+  margin: 0 10px;
 `;
-export const RemoveButton = styled.span`
+
+export const RemoveButton = styled.div`
   padding-left: 12px;
   cursor: pointer;
 `;
-/* 
-  
-
-  */

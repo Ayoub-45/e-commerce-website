@@ -4,14 +4,12 @@ import { ReactComponent as RightArrow } from "../../assets/chevron-right-svgrepo
 import { ReactComponent as Remove } from "../../assets/multiply-svgrepo-com.svg";
 import { cartContext } from "../../contexts/cart.context";
 import {
-  Arrow,
   CheckoutItemContainer,
   ImageContainer,
-  Img,
-  Name,
-  Value,
-  Price,
+  BaseSpan,
   Quantity,
+  Arrow,
+  Value,
   RemoveButton,
 } from "./checkout-item.style";
 export default function CheckoutItem({ item }) {
@@ -38,9 +36,9 @@ export default function CheckoutItem({ item }) {
   return (
     <CheckoutItemContainer>
       <ImageContainer>
-        <Img src={imageUrl} alt={name} />
+        <img src={imageUrl} alt={name} />
       </ImageContainer>
-      <Name>{name}</Name>
+      <BaseSpan>{name}</BaseSpan>
       <Quantity>
         <Arrow onClick={() => removeItem(item)}>
           <LeftArrow />
@@ -50,7 +48,7 @@ export default function CheckoutItem({ item }) {
           <RightArrow />
         </Arrow>
       </Quantity>
-      <Price>{price}</Price>
+      <BaseSpan>{price}</BaseSpan>
       <RemoveButton onClick={() => handleClearItemFromCart(item)}>
         <Remove />
       </RemoveButton>
