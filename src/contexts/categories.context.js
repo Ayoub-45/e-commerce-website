@@ -15,7 +15,7 @@ export const CategoriesProvider = function ({ children }) {
       const categoriesMap = await getCategoriesAndDocuments();
       setCategoriesMap(categoriesMap);
     }
-    console.log(getCategoriesMap());
+    getCategoriesMap();
   }, []);
   return (
     <CategoriesContext.Provider value={value}>

@@ -99,7 +99,6 @@ export const signOutUser = async function () {
   return await signOut(auth);
 };
 export const onAuthStateChangeListener = function (callback) {
-  console.log(callback);
   return onAuthStateChanged(auth, callback);
 };
 export const getCategoriesAndDocuments = async function () {
