@@ -5,7 +5,7 @@ export const userReducer = (state, action) => {
   const { type, payload } = action;
   console.log(action);
   switch (type) {
-    case "SET_CURRENT_USER":
+    case USER_ACTiON_TYPES.SET_CURRENT_USER:
       return {
         ...state,
         currentUser: payload,
